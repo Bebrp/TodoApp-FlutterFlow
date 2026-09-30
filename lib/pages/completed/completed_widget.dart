@@ -3,8 +3,10 @@ import '/backend/backend.dart';
 import '/components/add_task_widget.dart';
 import '/components/task_box_widget.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'completed_model.dart';
@@ -90,6 +92,28 @@ class _CompletedWidgetState extends State<CompletedWidget> {
               crossAxisAlignment: (FFCrossAxisAlignment.start).flutterValue,
               textBaseline: TextBaseline.alphabetic,
               children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.black,
+                    borderRadius: 8.0,
+                    borderWidth: 0.5,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.logout,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      GoRouter.of(context).prepareAuthEvent();
+                      await authManager.signOut();
+                      GoRouter.of(context).clearRedirectLocation();
+
+                      context.goNamedAuth(
+                          SignUpWidget.routeName, context.mounted);
+                    },
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                   child: Text(
